@@ -1,0 +1,17 @@
+:root {
+  --purple: rgba(160, 123, 234, 0.3);
+}
+
+.item {
+  border-radius: 6px;
+  padding: 4px 0 4px 10px;
+  display: block;
+}
+
+.all {
+  background-color: var(--purple);
+}
+
+.other {
+  background-color: rgba(185, 185, 185, 0.4);
+}
