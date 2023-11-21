@@ -1,7 +1,4 @@
 import { Select } from "@chakra-ui/react"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { TodoModel } from "../utils/models.ts"
 
 type Props = {
   setSortBy: Function
@@ -19,7 +16,7 @@ const Filter = ({ setSortBy }: Props) => {
       variant='filled'
       bgColor='gray.100'
       onChange={e => {
-        setSortBy(prev => {
+        setSortBy((prev: any) => {
           prev.set("sortBy", e.target.value)
           return prev
         })

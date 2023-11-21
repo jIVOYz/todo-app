@@ -3,10 +3,10 @@ export interface TodoModel {
   title: string
   description: string
   status: boolean
-  dueDate: string | Date
+  dueDate: string
   pinned: boolean
   priority: Priority
-  category: Category
+  category: Category | null
 }
 
 export interface Category {

@@ -8,24 +8,25 @@ import classes from "./NavBar/Colors.module.css"
 import NewCategoryForm from "./NewCategoryForm"
 
 const Categories = () => {
-  const [categories, setCategories] = useLocalStorage<Category[]>("categories", [])
+  const [categories, setCategories] = useLocalStorage<Category[] | null | undefined>("categories", [])
   function createNewCategory(title: string, color: string) {
     const newCategory: Category = {
-      id: categories.length + 1,
+      id: categories?.length ? categories.length + 1 : -1,
       title,
       color,
     }
 
-    setCategories(current => [newCategory, ...current])
+    setCategories(current => [newCategory, ...(current as [])])
   }
 
   const [todos, setTodos] = useLocalStorage<TodoModel[]>("tasks", [])
   const navigate = useNavigate()
-  function deleteCategory(id: string) {
-    const deleteCategory = categories.filter(category => category.id !== id)
 
-    const thisCategory = categories.find(c => c.id === id)
-    const todosWithThisCategory = todos.filter(todo => todo.category === thisCategory?.title)
+  function deleteCategory(id: number) {
+    const deletedCategory = categories?.filter(category => category.id !== id)
+
+    const thisCategory = categories?.find(c => c.id === id)
+    const todosWithThisCategory = todos.filter(todo => todo.category?.id === thisCategory?.id)
 
     if (thisCategory) {
       if ((window.location.pathname = `/category/${thisCategory.id}`)) {
@@ -37,7 +38,8 @@ const Categories = () => {
       todosWithThisCategory.map(todo => (todo.category = null))
       setTodos(todos)
     }
-    setCategories(deleteCategory)
+
+    setCategories(deletedCategory)
   }
 
   return (
@@ -49,7 +51,7 @@ const Categories = () => {
       </Flex>
 
       <Flex direction='column' mt={4} gap={2}>
-        {categories.map(category => (
+        {categories?.map(category => (
           <Flex key={category.id} alignItems='center'>
             <Text flex='1 1 75%' mx={2} color='black'>
               <NavLink

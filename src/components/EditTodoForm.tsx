@@ -28,9 +28,9 @@ type Props = {
 const EditTodoForm = ({ todo }: Props) => {
   const [newTodoTitle, setNewTodoTitle] = useState<string>(todo.title)
   const [newTodoDescription, setNewTodoDescription] = useState<string>(todo.description)
-  const [newTodoDueDate, setNewTodoDueDate] = useState<Date | string>(todo.dueDate)
+  const [newTodoDueDate, setNewTodoDueDate] = useState<string>(todo.dueDate)
   const [newTodoPriority, setNewTodoPriority] = useState<Priority>(todo.priority)
-  const [newTodoCategory, setNewTodoCategory] = useState<Category>(todo.category)
+  const [newTodoCategory, setNewTodoCategory] = useState<Category | null>(todo.category)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [todos, setTodos] = useLocalStorage<TodoModel[]>("tasks", [])
