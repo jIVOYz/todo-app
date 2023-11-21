@@ -36,17 +36,17 @@ const TodoList = ({ todos }: Props) => {
           </h2>
           <AccordionPanel pb={4}>
             <Flex direction='column' gap={2}>
-              {todos.map(todo => todo.pinned && <TodoItem key={todo.id} todo={todo} />)}
+              {todos?.map(todo => todo.pinned && <TodoItem key={todo.id} todo={todo} />)}
             </Flex>
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
 
-      {todos.length ? (
+      {todos?.length ? (
         todos.map(todo => !todo.pinned && <TodoItem key={todo.id} todo={todo} />)
       ) : (
         <Text fontSize={18} fontWeight={500}>
-          Empty. Add new todos
+          Empty for now. Add new tasks.
         </Text>
       )}
     </Flex>

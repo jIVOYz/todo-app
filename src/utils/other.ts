@@ -6,7 +6,11 @@ export const priorities = [
 ]
 
 export const sortMethods = {
-  none: { method: (a, b) => null },
+  none: {
+    method: (a, b) => {
+      return
+    },
+  },
   date: { method: (a, b) => (a.dueDate > b.dueDate ? -1 : 1) },
   priority: { method: (a, b) => (a.priority.id > b.priority.id ? -1 : 1) },
 }
