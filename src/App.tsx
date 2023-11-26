@@ -1,11 +1,17 @@
 import { Route, Routes } from "react-router-dom"
 
+import { useEffect } from "react"
+import { useLocalStorage } from "usehooks-ts"
 import Layout from "./components/Layout"
 import AllTodos from "./pages/AllTodos"
 import CategoryPage from "./pages/CategoryPage"
 import NotFound from "./pages/NotFound"
 import Today from "./pages/Today"
 import Week from "./pages/Week"
+
+if (localStorage.getItem("tasks") === null) {
+  localStorage.setItem("tasks", JSON.stringify([]))
+}
 
 function App() {
   return (

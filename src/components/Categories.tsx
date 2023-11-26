@@ -7,7 +7,7 @@ import EditCategoryForm from "./EditCategoryForm"
 import classes from "./NavBar/Colors.module.css"
 import NewCategoryForm from "./NewCategoryForm"
 
-const Categories = () => {
+const Categories = ({ onToggle }: any) => {
   const [categories, setCategories] = useLocalStorage<Category[] | null | undefined>("categories", [])
   function createNewCategory(title: string, color: string) {
     const newCategory: Category = {
@@ -59,6 +59,7 @@ const Categories = () => {
                   isPending ? "" : isActive ? classNames(classes.other, classes.item) : classes.item
                 }
                 to={`/category/${category.id}`}
+                onClick={onToggle}
               >
                 {category.title}
               </NavLink>

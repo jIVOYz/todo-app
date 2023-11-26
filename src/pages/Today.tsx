@@ -18,7 +18,9 @@ const Today = () => {
   return (
     <div>
       <Box mb={4}>
-        <Heading mb={2}>Today</Heading>
+        <Heading textAlign={{ base: "center", md: "left" }} mb={2}>
+          Today
+        </Heading>
         <Divider />
       </Box>
       <Flex gap={2}>

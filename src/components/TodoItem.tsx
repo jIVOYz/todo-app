@@ -47,7 +47,7 @@ const TodoItem = ({ todo }: Props) => {
       <Flex
         direction='column'
         gap={2}
-        w='60%'
+        w={{ base: "95%", lg: "60%" }}
         justifyContent='center'
         border='1px'
         borderColor='gray.300'
@@ -90,7 +90,7 @@ const TodoItem = ({ todo }: Props) => {
                 ? "Tomorrow"
                 : todo.dueDate}
             </Text>
-            <Box bgColor={todo.category.color} p='2px 4px' borderRadius='6px'>
+            <Box bgColor={todo.category ? todo.category.color : ""} p='2px 4px' borderRadius='6px'>
               <Text fontWeight={500}>{todo.category ? todo.category.title : ""}</Text>
             </Box>
             <Tooltip label={todo.priority.title}>

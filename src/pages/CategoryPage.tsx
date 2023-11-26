@@ -20,7 +20,9 @@ const CategoryPage = () => {
   return (
     <div>
       <Box mb={4}>
-        <Heading mb={2}>{findCategory?.title}</Heading>
+        <Heading textAlign={{ base: "center", md: "left" }} mb={2}>
+          {findCategory?.title}
+        </Heading>
         <Divider />
       </Box>
       <Flex gap={2}>
