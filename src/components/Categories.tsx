@@ -30,7 +30,7 @@ const Categories = ({ onToggle }: any) => {
 
     if (thisCategory) {
       if ((window.location.pathname = `/category/${thisCategory.id}`)) {
-        navigate("/")
+        navigate("/todo-app/")
       }
     }
 
@@ -58,7 +58,7 @@ const Categories = ({ onToggle }: any) => {
                 className={({ isActive, isPending }) =>
                   isPending ? "" : isActive ? classNames(classes.other, classes.item) : classes.item
                 }
-                to={`/category/${category.id}`}
+                to={`/todo-app/category/${category.id}`}
                 onClick={onToggle}
               >
                 {category.title}

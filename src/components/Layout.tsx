@@ -1,9 +1,12 @@
 import { Grid, GridItem } from "@chakra-ui/react"
 import React from "react"
 import { Outlet } from "react-router-dom"
-
 import MobileMenu from "./NavBar/MobileMenu"
 import NavBar from "./NavBar/NavBar"
+
+if (localStorage.getItem("tasks") === null) {
+  localStorage.setItem("tasks", JSON.stringify([]))
+}
 
 const Layout = React.memo(() => {
   return (

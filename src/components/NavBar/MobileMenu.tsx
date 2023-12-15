@@ -31,7 +31,7 @@ const MobileMenu = () => {
             <HamburgerIcon />
           </Button>
           <NavLink
-            to='/'
+            to='/todo-app/'
             className={({ isActive, isPending }) =>
               isPending ? "" : isActive ? classNames(classes.all, classes.item) : classes.item
             }
@@ -43,7 +43,7 @@ const MobileMenu = () => {
             </Flex>
           </NavLink>
           <NavLink
-            to='/today'
+            to='/todo-app/today'
             className={({ isActive, isPending }) =>
               isPending ? "" : isActive ? classNames(classes.other, classes.item) : classes.item
             }
@@ -55,7 +55,7 @@ const MobileMenu = () => {
             </Flex>
           </NavLink>
           <NavLink
-            to='/week'
+            to='/todo-app/week'
             className={({ isActive, isPending }) =>
               isPending ? "" : isActive ? classNames(classes.other, classes.item) : classes.item
             }
