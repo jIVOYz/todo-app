@@ -30,6 +30,7 @@ const Week = () => {
         <Form />
         <Filter setSortBy={setSort} />
       </Flex>
+      {/* @ts-ignore */}
       <TodoList todos={thisWeekTodos?.sort(sortMethods[sort.get("sortBy")].method)} />
     </div>
   )

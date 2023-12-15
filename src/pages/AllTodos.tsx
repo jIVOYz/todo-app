@@ -24,6 +24,7 @@ const AllTodos = () => {
         <Form />
         <Filter setSortBy={setSortBy} />
       </Flex>
+      {/* @ts-ignore */}
       <TodoList todos={todos.sort(sortMethods[sortVal].method)} />
     </div>
   )

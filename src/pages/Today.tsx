@@ -1,17 +1,17 @@
 import { Box, Divider, Flex, Heading } from "@chakra-ui/react"
 import { isToday } from "date-fns"
 import { useReadLocalStorage } from "usehooks-ts"
-import Filter from "../components/Filter"
+// import Filter from "../components/Filter"
 import Form from "../components/Form"
 import TodoList from "../components/TodoList"
-import { Category, TodoModel } from "../utils/models"
+import { TodoModel } from "../utils/models"
 
 const Today = () => {
   const todos = useReadLocalStorage<TodoModel[]>("tasks")
 
-  const todayTodos = todos?.filter(t => {
-    if (isToday(new Date(t.dueDate))) {
-      return t
+  const todayTodos = todos?.filter(todo => {
+    if (isToday(new Date(todo.dueDate))) {
+      return todo
     }
   })
 

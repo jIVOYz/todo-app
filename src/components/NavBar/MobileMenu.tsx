@@ -1,7 +1,6 @@
 import { HamburgerIcon } from "@chakra-ui/icons"
 import { Box, Button, Divider, Flex, Slide, useDisclosure } from "@chakra-ui/react"
 import classNames from "classnames"
-import React from "react"
 import { HiOutlineRectangleStack } from "react-icons/hi2"
 import { TbCalendar, TbCalendarEvent } from "react-icons/tb"
 import { NavLink } from "react-router-dom"

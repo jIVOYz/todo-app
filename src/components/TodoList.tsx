@@ -14,7 +14,7 @@ import { TodoModel } from "../utils/models"
 import TodoItem from "./TodoItem"
 
 type Props = {
-  todos: TodoModel[]
+  todos: TodoModel[] | undefined
 }
 
 const TodoList = ({ todos }: Props) => {
