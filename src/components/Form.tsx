@@ -48,6 +48,7 @@ const Form = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
+  // @ts-ignore
   const [todos, setTodos] = useLocalStorage<TodoModel[]>("tasks", [])
   function createNewTodo() {
     const newTodo: TodoModel = {
