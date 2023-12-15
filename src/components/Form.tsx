@@ -24,7 +24,7 @@ import { priorities } from "../utils/other"
 const Form = () => {
   const [todoTitle, setTodoTitle] = useState<string>("")
   const [todoDescription, setTodoDescription] = useState<string>("")
-  const [todoDueDate, setTodoDueDate] = useState<Date | string>("")
+  const [todoDueDate, setTodoDueDate] = useState<string>("")
   const [todoPriority, setTodoPriority] = useState<Priority>({
     id: 0,
     title: "No Priority",

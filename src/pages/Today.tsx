@@ -1,10 +1,9 @@
 import { Box, Divider, Flex, Heading } from "@chakra-ui/react"
 import { isToday } from "date-fns"
 import { useReadLocalStorage } from "usehooks-ts"
-import Filter from "../components/Filter"
 import Form from "../components/Form"
 import TodoList from "../components/TodoList"
-import { Category, TodoModel } from "../utils/models"
+import { TodoModel } from "../utils/models"
 
 const Today = () => {
   const todos = useReadLocalStorage<TodoModel[]>("tasks")
@@ -18,12 +17,15 @@ const Today = () => {
   return (
     <div>
       <Box mb={4}>
-        <Heading mb={2}>Today</Heading>
+        <Heading textAlign={{ base: "center", md: "left" }} mb={2}>
+          Today
+        </Heading>
         <Divider />
       </Box>
       <Flex gap={2}>
         <Form />
       </Flex>
+      {/* @ts-ignore */}
       <TodoList todos={todayTodos} />
     </div>
   )

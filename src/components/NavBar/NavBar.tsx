@@ -10,7 +10,7 @@ import classes from "./Colors.module.css"
 const NavBar = React.memo(() => {
   return (
     <>
-      <Flex bgColor='gray.100' h='100vh' p={3} direction='column'>
+      <Flex display={{ base: "none", md: "block" }} bgColor='gray.100' h='100vh' p={3} direction='column'>
         <NavLink
           to='/'
           className={({ isActive, isPending }) =>

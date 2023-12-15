@@ -7,7 +7,7 @@ export const priorities = [
 
 export const sortMethods = {
   none: {
-    method: (a, b) => {
+    method: (a, b): void => {
       return
     },
   },

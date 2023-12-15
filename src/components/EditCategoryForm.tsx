@@ -29,7 +29,7 @@ const EditCategoryForm = ({ category }: Props) => {
   const [categories, setCategories] = useLocalStorage<Category[]>("categories", [])
   const [todos, setTodos] = useLocalStorage<TodoModel[]>("tasks", [])
 
-  const todosWithThisCategory = todos.filter(todo => todo.category.id === category.id)
+  const todosWithThisCategory = todos.filter(todo => todo.category && todo.category.id === category.id)
   function updateCategory() {
     const thisCategory = categories.find(c => c.id === category.id)
 

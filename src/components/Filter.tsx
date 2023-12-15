@@ -6,13 +6,13 @@ type Props = {
 
 const Filter = ({ setSortBy }: Props) => {
   const sortTypes = {
-    none: { id: 0, sortProperty: "none" },
+    none: { id: 0, sortProperty: "" },
     date: { id: 1, sortProperty: "date" },
     priority: { id: 2, sortProperty: "priority" },
   }
   return (
     <Select
-      width='240px'
+      width={{ base: "180px", md: "240px" }}
       variant='filled'
       bgColor='gray.100'
       onChange={e => {
@@ -21,7 +21,7 @@ const Filter = ({ setSortBy }: Props) => {
           return prev
         })
       }}
-      defaultValue='none'
+      defaultValue=''
     >
       <option disabled value={sortTypes.none.sortProperty}>
         Sort By

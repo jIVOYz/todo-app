@@ -21,13 +21,16 @@ const Week = () => {
   return (
     <div>
       <Box mb={4}>
-        <Heading mb={2}>This Week</Heading>
+        <Heading textAlign={{ base: "center", md: "left" }} mb={2}>
+          This Week
+        </Heading>
         <Divider />
       </Box>
       <Flex gap={2}>
         <Form />
         <Filter setSortBy={setSort} />
       </Flex>
+      {/* @ts-ignore */}
       <TodoList todos={thisWeekTodos?.sort(sortMethods[sort.get("sortBy")].method)} />
     </div>
   )
