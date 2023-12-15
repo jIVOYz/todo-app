@@ -7,10 +7,10 @@ export const priorities = [
 
 export const sortMethods = {
   none: {
-    method: (a, b): void => {
+    method: (): void => {
       return
     },
   },
-  date: { method: (a, b) => (a.dueDate > b.dueDate ? -1 : 1) },
-  priority: { method: (a, b) => (a.priority.id > b.priority.id ? -1 : 1) },
+  date: { method: ({a, b}: any) => (a.dueDate > b.dueDate ? -1 : 1) },
+  priority: { method: ({a, b}: any) => (a.priority.id > b.priority.id ? -1 : 1) },
 }
