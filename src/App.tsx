@@ -14,11 +14,11 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Layout />}>
-          <Route path='/' element={<AllTodos />} />
-          <Route path='today' element={<Today />} />
-          <Route path='week' element={<Week />} />
-          <Route path='category/:categoryId' element={<CategoryPage />} />
+        <Route path='/todo-app/' element={<Layout />}>
+          <Route path='/todo-app/' element={<AllTodos />} />
+          <Route path='/todo-app/today' element={<Today />} />
+          <Route path='/todo-app/week' element={<Week />} />
+          <Route path='/todo-app/category/:categoryId' element={<CategoryPage />} />
           <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>

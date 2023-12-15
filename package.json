@@ -2,6 +2,7 @@
   "name": "to-do",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://jivoyz.github.io/todo-app/",
   "type": "module",
   "scripts": {
     "dev": "vite",
