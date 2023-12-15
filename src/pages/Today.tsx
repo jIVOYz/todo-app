@@ -26,6 +26,7 @@ const Today = () => {
       <Flex gap={2}>
         <Form />
       </Flex>
+      {/* @ts-ignore */}
       <TodoList todos={todayTodos} />
     </div>
   )
