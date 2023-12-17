@@ -17,7 +17,7 @@ const MobileMenu = () => {
       <Button onClick={onToggle} bgColor='gray.200' position='fixed' left='8px' top='10px'>
         <HamburgerIcon />
       </Button>
-      <Slide direction='left' in={isOpen} style={{ zIndex: 100 }}>
+      <Slide direction='left' in={isOpen} style={{ zIndex: 500 }}>
         <Flex
           bgColor='gray.100'
           position='fixed'
@@ -26,7 +26,7 @@ const MobileMenu = () => {
           p={3}
           pt={12}
           direction='column'
-          zIndex={100}
+          zIndex={500}
         >
           <Button onClick={onToggle} bgColor='gray.300' position='absolute' left='8px' top='5px'>
             <HamburgerIcon />

@@ -1,34 +1,29 @@
-import { Select } from "@chakra-ui/react"
+import { Menu, MenuButton, MenuItem, MenuList, Tooltip } from "@chakra-ui/react"
+import { FaFilter } from "react-icons/fa"
 
 type Props = {
   setSortBy: Function
 }
 
 const Filter = ({ setSortBy }: Props) => {
-  const sortTypes = {
-    none: { id: 0, sortProperty: "" },
-    date: { id: 1, sortProperty: "date" },
-    priority: { id: 2, sortProperty: "priority" },
-  }
   return (
-    <Select
-      width={{ base: "180px", md: "240px" }}
-      variant='filled'
-      bgColor='gray.100'
-      onChange={e => {
-        setSortBy((prev: any) => {
-          prev.set("sortBy", e.target.value)
-          return prev
-        })
-      }}
-      defaultValue=''
-    >
-      <option disabled value={sortTypes.none.sortProperty}>
-        Sort By
-      </option>
-      <option value={sortTypes.date.sortProperty}>Date Descending</option>
-      <option value={sortTypes.priority.sortProperty}>High Priority</option>
-    </Select>
+    <div style={{ display: "flex", alignItems: "center", gap: "6px", zIndex: 101 }}>
+      <Menu>
+        <Tooltip aria-label='Sort' label='Sort' openDelay={300}>
+          <MenuButton _hover={{ background: "gray.200" }} padding={2} borderRadius={4}>
+            <FaFilter />
+          </MenuButton>
+        </Tooltip>
+        <MenuList>
+          <MenuItem onClick={(e: any) => setSortBy(e.target.value)} value='date'>
+            Date
+          </MenuItem>
+          <MenuItem onClick={(e: any) => setSortBy(e.target.value)} value='priority'>
+            Priority
+          </MenuItem>
+        </MenuList>
+      </Menu>
+    </div>
   )
 }
 

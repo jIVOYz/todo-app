@@ -11,7 +11,8 @@ import {
   Text,
   Tooltip,
 } from "@chakra-ui/react"
-import { isToday, isTomorrow } from "date-fns"
+import { isThisYear, isToday, isTomorrow } from "date-fns"
+import { MdPushPin } from "react-icons/md"
 import { useLocalStorage } from "usehooks-ts"
 import { TodoModel } from "../utils/models"
 import EditTodoForm from "./EditTodoForm"
@@ -42,6 +43,30 @@ const TodoItem = ({ todo }: Props) => {
     }
     setTodos(todos)
   }
+
+  const formatedDate = () => {
+    const date = new Date(todo.dueDate)
+    const dateStr = new Date(todo.dueDate).toDateString()
+
+    const monthName = dateStr.split(" ")
+    const stringDate = monthName[1] + " " + date.getDate()
+    const nextYearDateStr = date.getFullYear() + " " + monthName[1] + " " + date.getDate()
+    const isDateToday = isToday(date)
+    const isDateTomorrow = isToday(date)
+
+    if (todo.dueDate === "") {
+      return ""
+    }
+
+    return isDateToday
+      ? "Today"
+      : isDateTomorrow
+      ? "Tomorrow"
+      : isThisYear(date)
+      ? stringDate
+      : nextYearDateStr
+  }
+
   return (
     <>
       <Flex
@@ -66,8 +91,9 @@ const TodoItem = ({ todo }: Props) => {
             </Text>
           </Flex>
         </Flex>
-        <Flex gap={3}>
+        <Flex gap={3} alignItems='center'>
           <Flex alignItems='center' gap='2'>
+            {todo.pinned && <MdPushPin />}
             {todo.dueDate && (
               <CalendarIcon
                 w={3}
@@ -88,7 +114,7 @@ const TodoItem = ({ todo }: Props) => {
                 ? "Today"
                 : isTomorrow(new Date(todo.dueDate))
                 ? "Tomorrow"
-                : todo.dueDate}
+                : formatedDate()}
             </Text>
             <Box bgColor={todo.category ? todo.category.color : ""} p='2px 4px' borderRadius='6px'>
               <Text fontWeight={500}>{todo.category ? todo.category.title : ""}</Text>

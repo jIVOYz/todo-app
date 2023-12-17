@@ -15,6 +15,8 @@ const Layout = React.memo(() => {
         h='100vh'
         gap='1'
         color='blackAlpha.700'
+        marginRight={4}
+        overflowX='hidden'
       >
         <GridItem p={0} area={"nav"}>
           <NavBar />
