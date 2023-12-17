@@ -11,7 +11,7 @@ const Categories = ({ onToggle }: any) => {
   const [categories, setCategories] = useLocalStorage<Category[] | null | undefined>("categories", [])
   function createNewCategory(title: string, color: string) {
     const newCategory: Category = {
-      id: categories?.length ? categories.length + 1 : -1,
+      id: crypto.randomUUID(),
       title,
       color,
     }
@@ -22,7 +22,7 @@ const Categories = ({ onToggle }: any) => {
   const [todos, setTodos] = useLocalStorage<TodoModel[]>("tasks", [])
   const navigate = useNavigate()
 
-  function deleteCategory(id: number) {
+  function deleteCategory(id: string) {
     const deletedCategory = categories?.filter(category => category.id !== id)
 
     const thisCategory = categories?.find(c => c.id === id)
@@ -53,7 +53,7 @@ const Categories = ({ onToggle }: any) => {
       <Flex direction='column' mt={4} gap={2}>
         {categories?.map(category => (
           <Flex key={category.id} alignItems='center'>
-            <Text flex='1 1 75%' mx={2} color='black'>
+            <Text width='70%' mx={2} color='black'>
               <NavLink
                 className={({ isActive, isPending }) =>
                   isPending ? "" : isActive ? classNames(classes.other, classes.item) : classes.item
@@ -64,7 +64,8 @@ const Categories = ({ onToggle }: any) => {
                 {category.title}
               </NavLink>
             </Text>
-            <Box w={5} h={5} borderRadius='full' bgColor={category.color}></Box>
+
+            <Box w={3} h={3} borderRadius='full' bgColor={category.color}></Box>
 
             <Menu>
               {({ isOpen }) => (

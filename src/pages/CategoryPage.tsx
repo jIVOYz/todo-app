@@ -1,8 +1,9 @@
 import { Box, Divider, Flex, Heading } from "@chakra-ui/react"
-import { useParams, useSearchParams } from "react-router-dom"
+import { useState } from "react"
+import { useParams } from "react-router-dom"
 import { useReadLocalStorage } from "usehooks-ts"
 import Filter from "../components/Filter"
-import Form from "../components/Form"
+import Form from "../components/Form/Form"
 import TodoList from "../components/TodoList"
 import { Category, TodoModel } from "../utils/models"
 import { sortMethods } from "../utils/other"
@@ -10,12 +11,12 @@ import { sortMethods } from "../utils/other"
 const CategoryPage = () => {
   const { categoryId } = useParams()
   const categories = useReadLocalStorage<Category[]>("categories")
-  const findCategory = categories?.find(c => String(c.id) === categoryId)
+  const findCategory = categories && categories.find(c => String(c.id) === categoryId)
 
   const todos = useReadLocalStorage<TodoModel[]>("tasks")
   const todosWithThisCategory = todos?.filter(todo => todo.category?.id === findCategory?.id)
 
-  const [sort, setSort] = useSearchParams({ sortBy: "priority" })
+  const [sort, setSort] = useState<string>("date")
 
   return (
     <div>
@@ -25,12 +26,12 @@ const CategoryPage = () => {
         </Heading>
         <Divider />
       </Box>
-      <Flex gap={2}>
-        <Form />
+      <Flex direction='column' gap={2}>
         <Filter setSortBy={setSort} />
+        <Form initialCategory={findCategory} title={findCategory?.title} />
       </Flex>
       {/* @ts-ignore */}
-      <TodoList todos={todosWithThisCategory?.sort(sortMethods[sort.get("sortBy")].method)} />
+      <TodoList todos={todosWithThisCategory?.sort(sortMethods[sort].method)} />
     </div>
   )
 }
