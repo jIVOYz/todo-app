@@ -93,7 +93,9 @@ const EditTodoForm = ({ todo }: Props) => {
                 </MenuButton>
 
                 <MenuList>
-                  <MenuItem onClick={() => setNewTodoCategory({ id: 0, title: "", color: "" })}>
+                  <MenuItem
+                    onClick={() => setNewTodoCategory({ id: crypto.randomUUID(), title: "", color: "" })}
+                  >
                     No Category
                   </MenuItem>
                   {categories?.map(category => (
