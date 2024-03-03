@@ -1,6 +1,6 @@
 import { CalendarIcon } from "@chakra-ui/icons"
 import { Button, Flex, Input, Text, Tooltip } from "@chakra-ui/react"
-import { isThisYear, isToday } from "date-fns"
+import { isThisYear, isToday, isTomorrow } from "date-fns"
 import { useRef } from "react"
 import { TodoModel } from "../../utils/models"
 
@@ -19,15 +19,15 @@ const PickDate = ({ todoDueDate, setTodoDueDate }: Props) => {
     const stringDate = monthName[1] + " " + date.getDate()
     const nextYearDateStr = date.getFullYear() + " " + monthName[1] + " " + date.getDate()
     const isDateToday = isToday(date)
-    const isDateTomorrow = isToday(date)
+    const isDateTomorrow = isTomorrow(date)
 
     return isDateToday
       ? "Today"
       : isDateTomorrow
-      ? "Tomorrow"
-      : isThisYear(date)
-      ? stringDate
-      : nextYearDateStr
+        ? "Tomorrow"
+        : isThisYear(date)
+          ? stringDate
+          : nextYearDateStr
   }
 
   return (
@@ -37,21 +37,22 @@ const PickDate = ({ todoDueDate, setTodoDueDate }: Props) => {
         <Button
           type='button'
           background='transparent'
-          _hover={{ background: "gray.200" }}
-          padding={0}
+          _hover={{ background: 'transparent' }}
           paddingY={4}
           onClick={() => {
             dateInputRef.current.showPicker()
           }}
-          boxSize='1.2em'
+          display="inline-flex"
+          justifyContent='flex-start'
         >
-          <Flex direction='column' alignItems='center'>
+          <Flex alignItems="center">
             <CalendarIcon />
-            {todoDueDate !== "" && (
+            {todoDueDate !== "" ? (
               <Text fontSize={{ base: 14, md: 16 }} marginX={2}>
                 {formatedDate()}
               </Text>
-            )}
+
+            ): <Text fontSize={{ base: 14, md: 16 }} marginX={2}>Date</Text>}
           </Flex>
         </Button>
       </Tooltip>

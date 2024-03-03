@@ -5,11 +5,9 @@ import {
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
-  Text,
   Tooltip,
 } from "@chakra-ui/react"
-// import { useState } from "react"
-import { TbCategory } from "react-icons/tb"
+import { TbCategoryFilled } from "react-icons/tb"
 import { useReadLocalStorage } from "usehooks-ts"
 import { Category } from "../../utils/models"
 
@@ -30,17 +28,10 @@ const PickCategory = ({ todoCategory, setTodoCategory }: Props) => {
                 type='button'
                 background='transparent'
                 _hover={{ background: "transparent" }}
-                paddingY={4}
-                paddingX={8}
-                boxSize='1em'
+                fontWeight={500}
               >
-                <Flex direction='column' alignItems='center'>
-                  <TbCategory size='1.2em' />
-                  <Text fontSize={{ base: 14, md: 16 }} fontWeight={500}>
-                    {todoCategory && todoCategory.title.substr(0, 10)}
-                  </Text>
-                </Flex>
-              </Button>
+               <TbCategoryFilled size="1.5em" color={todoCategory?.color} /> 
+             </Button>
             </Tooltip>
           </Flex>
         </PopoverTrigger>
@@ -49,7 +40,7 @@ const PickCategory = ({ todoCategory, setTodoCategory }: Props) => {
             <Flex direction='column' gap={2}>
               {categories &&
                 categories.map(c => (
-                  <Button background='transparent' key={c.id} onClick={() => setTodoCategory(c)} padding={0}>
+                  <Button background={todoCategory!.id === c.id ? "gray.100" : "transparent" } key={c.id} onClick={() => setTodoCategory(c)} padding={0}>
                     {c.title}
                   </Button>
                 ))}

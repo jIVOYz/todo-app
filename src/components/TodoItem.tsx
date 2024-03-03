@@ -9,13 +9,13 @@ import {
   MenuItem,
   MenuList,
   Text,
-  Tooltip,
 } from "@chakra-ui/react"
 import { isThisYear, isToday, isTomorrow } from "date-fns"
 import { MdPushPin } from "react-icons/md"
 import { useLocalStorage } from "usehooks-ts"
 import { TodoModel } from "../utils/models"
 import EditTodoForm from "./EditTodoForm"
+import { RiFlag2Fill } from "react-icons/ri"
 
 type Props = {
   todo: TodoModel
@@ -61,10 +61,10 @@ const TodoItem = ({ todo }: Props) => {
     return isDateToday
       ? "Today"
       : isDateTomorrow
-      ? "Tomorrow"
-      : isThisYear(date)
-      ? stringDate
-      : nextYearDateStr
+        ? "Tomorrow"
+        : isThisYear(date)
+          ? stringDate
+          : nextYearDateStr
   }
 
   return (
@@ -87,7 +87,7 @@ const TodoItem = ({ todo }: Props) => {
           <Flex direction='column'>
             <Text fontWeight={500}>{todo.title}</Text>
             <Text fontSize='14px' color='gray.400'>
-              {todo.description}
+              {todo.description.substr(0, 24)}
             </Text>
           </Flex>
         </Flex>
@@ -113,15 +113,13 @@ const TodoItem = ({ todo }: Props) => {
               {isToday(new Date(todo.dueDate))
                 ? "Today"
                 : isTomorrow(new Date(todo.dueDate))
-                ? "Tomorrow"
-                : formatedDate()}
+                  ? "Tomorrow"
+                  : formatedDate()}
             </Text>
             <Box bgColor={todo.category ? todo.category.color : ""} p='2px 4px' borderRadius='6px'>
               <Text fontWeight={500}>{todo.category ? todo.category.title : ""}</Text>
             </Box>
-            <Tooltip label={todo.priority.title}>
-              <Box bgColor={todo.priority.color} w={4} h={4} borderRadius='full' />
-            </Tooltip>
+              <RiFlag2Fill size="1.2em" color={todo.priority.color} />
           </Flex>
           <Menu>
             {({ isOpen }) => (

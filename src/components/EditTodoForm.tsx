@@ -1,7 +1,6 @@
 import { ChevronDownIcon } from "@chakra-ui/icons"
 import {
   Button,
-  Flex,
   Input,
   Menu,
   MenuButton,
@@ -14,12 +13,13 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Textarea,
   useDisclosure,
 } from "@chakra-ui/react"
 import { useState } from "react"
 import { useLocalStorage, useReadLocalStorage } from "usehooks-ts"
 import { Category, Priority, TodoModel } from "../utils/models"
-import { priorities } from "../utils/other"
+import PickPriorioty from "./Form/PickPriorioty"
 
 type Props = {
   todo: TodoModel
@@ -61,9 +61,11 @@ const EditTodoForm = ({ todo }: Props) => {
           <ModalCloseButton />
           <ModalBody>
             <Input onChange={e => setNewTodoTitle(e.target.value)} value={newTodoTitle} placeholder='Title' />
-            <Input
+            <Textarea
               onChange={e => setNewTodoDescription(e.target.value)}
               value={newTodoDescription}
+              resize='none'
+              height="auto"
               mt={2}
               placeholder='Description'
             />
@@ -73,28 +75,15 @@ const EditTodoForm = ({ todo }: Props) => {
               type='date'
               value={newTodoDueDate}
             />
-            <Flex direction='column' gap={2}>
+              <PickPriorioty todoPriority={newTodoPriority} setTodoPriority={setNewTodoPriority}/>
               <Menu>
-                <MenuButton mt={5} colorScheme='purple' as={Button} rightIcon={<ChevronDownIcon />}>
-                  {newTodoPriority.title}
-                </MenuButton>
-                <MenuList>
-                  {priorities.map(p => (
-                    <MenuItem key={Math.random()} onClick={() => setNewTodoPriority(p)}>
-                      {p.title}
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </Menu>
-
-              <Menu>
-                <MenuButton mt={5} colorScheme='purple' as={Button} rightIcon={<ChevronDownIcon />}>
-                  {newTodoCategory ? newTodoCategory.title : "Category"}
+                <MenuButton mt={5} fontWeight={500} as={Button} rightIcon={<ChevronDownIcon />}>
+                  {newTodoCategory !== null ? newTodoCategory.title : "Category"}
                 </MenuButton>
 
                 <MenuList>
                   <MenuItem
-                    onClick={() => setNewTodoCategory({ id: crypto.randomUUID(), title: "", color: "" })}
+                    onClick={() => setNewTodoCategory(null)}
                   >
                     No Category
                   </MenuItem>
@@ -110,7 +99,6 @@ const EditTodoForm = ({ todo }: Props) => {
                   ))}
                 </MenuList>
               </Menu>
-            </Flex>
           </ModalBody>
 
           <ModalFooter>
